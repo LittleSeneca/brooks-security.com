@@ -296,25 +296,130 @@ body {
 }
 .home-hero__photo {
   flex: 0 0 auto;
-  width: 160px;
+  width: 240px;
   height: auto;
   border-radius: 14px;
+}
+/* Credential pills sit between the lead copy and the CTA row, so they need a
+   tighter bottom margin than the standalone .lead-trust on the checklist page. */
+.home-hero .lead-trust {
+  margin: 0.2rem 0 1.2rem;
+}
+/* --- Resume ---------------------------------------------------------------
+   Single column, no floats, no multi-column layout, no content in pseudo
+   elements: ATS parsers read the DOM in order and choke on anything else.
+   The print block strips site chrome so browser "Save as PDF" produces a
+   clean, text-layer PDF that an applicant tracking system can parse. */
+/* padding-top, not margin-top: `main, .book-page { padding-top: 0 }` below
+   makes the hero sit flush under the nav, which leaves this block as the
+   first child of a parent with no top padding or border, so a top margin
+   would collapse straight through it instead of creating space. */
+.resume-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0.7rem;
+  padding-top: 2.5rem;
+  margin: 0 0 2rem;
+}
+/* One control is a <button> and the other an <a>, and .btn-primary sets
+   `border: 0` while .btn-secondary sets a 1px border, so their box heights
+   and font metrics diverge. Normalise both here: content-width (the anchor
+   stretches to fill the row otherwise), matched border box, inherited font. */
+.resume-actions > .btn-primary,
+.resume-actions > .btn-secondary {
+  flex: 0 0 auto;
+  width: auto;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.1rem;
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.resume-actions > .btn-primary {
+  border: 1px solid transparent;
+}
+.resume-job {
+  margin-bottom: 1.4rem;
+}
+.resume-job > :first-child { margin-top: 0; }
+.resume-job > :last-child { margin-bottom: 0; }
+.resume h1 {
+  margin-bottom: 0.2rem;
+}
+.resume h2 {
+  margin-top: 1.6rem;
+  border-bottom: 1px solid var(--gray-200);
+  padding-bottom: 0.2rem;
+}
+.resume p,
+.resume li {
+  line-height: 1.5;
+}
+@media print {
+  .top-nav,
+  .book-toc,
+  .book-footer,
+  .book-header,
+  .resume-actions,
+  .lead-cta { display: none !important; }
+  .book-page,
+  main.container { padding: 0 !important; margin: 0 !important; max-width: none !important; }
+  .resume { font-size: 10.5pt; }
+  .resume h1 { font-size: 20pt; }
+  /* A heading must never be the last thing on a page. */
+  .resume h2 {
+    font-size: 12pt;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .resume h2 + p,
+  .resume h2 + ul,
+  .resume h2 + .resume-job {
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+  /* Keep each employment whole: a page may break between jobs, never inside
+     one, so a job title never ends up stranded from its bullets. */
+  .resume-job,
+  .resume ul {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .resume li {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .resume p { orphans: 3; widows: 3; }
+  a { text-decoration: none; color: #000; }
+  @page { margin: 0.6in 0.7in; }
+}
+
+/* Self-hosted presentation recording. The file is served from the S3 origin
+   through CloudFront, not bundled into the build -- see the deployment
+   exclude in hugo.toml. preload="metadata" keeps the 65MB off first paint. */
+.video-embed {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: #000;
 }
 .home-hero__text {
   flex: 1 1 320px;
   min-width: 280px;
 }
+/* Single line headline, so it can carry more weight than the old stacked pair.
+   clamp() lets it scale down rather than wrap awkwardly on narrow viewports. */
 .home-hero__title {
-  margin: -2rem 0 0.6rem;
-  font-size: 1.9rem;
-  line-height: 1.2;
-}
-.home-hero__title-offset {
-  display: inline-block;
-  padding-left: 7rem;
-  padding-top: 0.75rem;
-  font-size: 144%;
-  font-weight: 700;
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.85rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  text-wrap: balance;
 }
 .home-hero__title em {
   font-style: normal;
@@ -818,6 +923,129 @@ body {
   }
   .top-nav__link {
     width: 100%;
+  }
+}
+
+/* --- Background: honeycomb lattice ----------------------------------------
+   Two background layers on <body>, painted back to front:
+     2. a seamless 56x100 hexagon tile as an inline SVG data URI. Stroked
+        rather than filled, so line weight is a single number to tune:
+        stroke-width 0.7 at a 1.25x scale renders as ~0.9px hairlines.
+     1. a horizontal wash laid over the tile: transparent at the left and right
+        edges of the viewport, solid page background across the middle, so the
+        lattice only shows in the margins beside the content column and never
+        behind text.
+   The opaque band is 36rem either side of centre, with a 24rem feather outside
+   it, so the lattice ramps up slowly across the margin rather than switching on
+   at the container edge. Below 72rem of viewport those calc() stops go
+   negative, the wash covers the full width, and the lattice hides itself:
+   exactly right, since a narrow screen has no margin to show it in.
+   The wash uses var(--body-background) rather than a literal white so it
+   still works if the theme's colour variables change. Declared as longhands
+   so the theme's `background:` shorthand keeps supplying the colour.
+   background-attachment: fixed keeps the lattice still while the page scrolls,
+   so it reads as a backdrop instead of a texture glued to the content. */
+body {
+  background-image:
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent calc(50% - 60rem),
+      var(--body-background) calc(50% - 36rem),
+      var(--body-background) calc(50% + 36rem),
+      transparent calc(50% + 60rem),
+      transparent 100%
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cg fill='none' stroke='%232dd4bf' stroke-opacity='0.85' stroke-width='0.7'%3E%3Cpath d='M28 66L0 50L0 16L28 0L56 16L56 50L28 66L28 100'/%3E%3Cpath d='M28 0L28 34L0 50L0 84L28 100L56 84L56 50L28 34'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 100% 100%, 70px 125px;
+  background-repeat: no-repeat, repeat;
+  background-position: center top, center top;
+  background-attachment: fixed, fixed;
+}
+
+/* No lattice on mobile or tablet. The calc() stops above already collapse the
+   wash to full width below 72rem, but state it outright rather than leaning on
+   that: it also drops the data URI and the background-attachment: fixed, which
+   is a known source of scroll jank on iOS. */
+@media (max-width: 72rem) {
+  body { background-image: none; }
+}
+
+@media print {
+  body { background-image: none; }
+}
+
+/* --- Card surfaces --------------------------------------------------------
+   Every content region sits on a card floating over the honeycomb backdrop.
+   .home-section and .home-cta already carried this look; these tokens are the
+   single definition all of them now share. */
+:root {
+  --card-bg: var(--gray-100);
+  --card-border: var(--gray-200);
+  --card-radius: 16px;
+  --card-shadow: 0 1px 2px rgba(15, 23, 42, 0.035), 0 10px 28px rgba(15, 23, 42, 0.05);
+}
+
+/* Page-level card: blog posts, docs pages, the resume. Scoped to kind "page"
+   so list and taxonomy pages, which already render a grid of .blog-card, do
+   not become a card full of cards. */
+body.book-kind-page .book-page > article.markdown {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 2.25rem 2.25rem 2.5rem;
+  margin: 2rem 0 3rem;
+}
+
+/* The hero was the one homepage block without a card. Same padding as the
+   page-level card above, so the first card on the homepage and the first card
+   on every other page are identical. */
+.home-hero {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 2.25rem 2.25rem 2.5rem;
+}
+/* The gap above the first card is padding on the homepage's article rather
+   than a margin on the hero: .book-article has no padding or border of its
+   own, so a top margin on its first child would collapse through it instead
+   of creating space. Page-level cards get their 2rem from their own margin,
+   which is safe because .book-page is a flex item and therefore a block
+   formatting context root that stops the collapse. */
+body.book-kind-home .book-page > article.markdown {
+  padding-top: 2rem;
+}
+/* Was pulling the title up under a nav bar that is no longer directly above it. */
+.home-hero__title { margin-top: 0; }
+/* The radial glow is a z-index:-1 pseudo element and would now paint behind the
+   hero's own background. Lift it above the background, keep it under content. */
+.home-hero::before { z-index: 0; }
+.home-hero > * { position: relative; z-index: 1; }
+
+.home-section,
+.home-cta {
+  box-shadow: var(--card-shadow);
+}
+
+/* The resume card is screen furniture; the printed PDF wants a bare page. */
+@media print {
+  body.book-kind-page .book-page > article.markdown {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  body.book-kind-page .book-page > article.markdown,
+  .home-hero {
+    padding: 1.3rem 1.1rem;
+    border-radius: 12px;
   }
 }
 

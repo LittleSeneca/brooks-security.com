@@ -1,4 +1,11 @@
-# Platforms:
+---
+title: "Platforms"
+weight: 3
+---
+
+# Platforms
+
+An inventory of what I have actually worked in, with how long and on what. Part of the [curriculum vitae](/docs/curriculum-vitae/), alongside [work experience](/docs/curriculum-vitae/work-experience/) and [credentials](/docs/curriculum-vitae/credentials/).
 
 ## GitHub Activity
 
@@ -14,12 +21,12 @@ Used heavily for production, security, and automation work. Strongest areas are 
 ### Microsoft Azure
 **2 Years of Experience**
 
-Roughly two years across client environments and personal projects. Most of that time was SQL, virtual machines, and containers. I can use Azure when needed, but I usually prefer not to.
+Roughly two years across customer environments and personal projects, mostly SQL, virtual machines, and containers. AWS is where I am deepest, but I can work in Azure when that is where the customer runs.
 
 ### VMware vSphere
 **2 Years of Experience**
 
-Used extensively in client and prospect environments in prior roles. Broadcom owns VMware now, and I have not touched vSphere since that shift.
+Used extensively in customer and prospect environments in prior roles. I have not worked in vSphere since the Broadcom acquisition, so treat this as historical depth rather than current.
 
 ### Proxmox
 **5 Years of Experience**
@@ -48,7 +55,7 @@ Used as a Docker frontend in my homelab.
 ### GitHub
 **4 Years of Experience**
 
-Used across client projects and personal work for day-to-day source control and collaboration.
+Used across work and personal projects for day-to-day source control and collaboration.
 
 ### GitLab
 **2 Years of Experience**
@@ -65,14 +72,14 @@ Used previously for projects at a prior employer.
 ### GitHub Actions
 **4 Years of Experience**
 
-Used for pull request checks, Terraform validation and plan workflows, and production deployment automation in both client and personal repositories.
+Used for pull request checks, Terraform validation and plan workflows, and production deployment automation in both work and personal repositories.
 
 ## Configuration as Code
 
 ### Ansible Automation Engine
 **2 Years of Experience**
 
-Used to configure and maintain EC2 fleets for clients, with hundreds of assets under management.
+Used to configure and maintain customer EC2 fleets, with hundreds of assets under management.
 
 ### Chef Infra
 **1 Year of Experience**
@@ -89,7 +96,7 @@ Used previously for Windows and Linux patch management at a prior employer.
 ### Terraform
 **3 Years of Experience**
 
-Client environments are managed through PR-locked Terraform workflows.
+Production environments are managed through PR-locked Terraform workflows, including the infrastructure behind this site.
 
 ## Database Platforms
 
@@ -113,19 +120,19 @@ Used for internal Proxmox projects where centralized secret management is needed
 ### AWS Secrets Manager
 **4 Years of Experience**
 
-Used in production customer and client environments for storing and retrieving application and infrastructure secrets.
+Used in production environments for storing and retrieving application and infrastructure secrets.
 
 ### Infisical
 **1 Year of Experience**
 
-Used for internal tooling workflows for clients where centralized secret management is needed.
+Used for internal tooling workflows where centralized secret management is needed.
 
 ## Load Balancers
 
 ### Nginx
 **5 Years of Experience**
 
-Used in homelab and production environments across multiple client projects.
+Used in homelab and production environments across multiple projects.
 
 ### AWS Application Load Balancer (ALB)
 **3 Years of Experience**
@@ -161,7 +168,7 @@ Used extensively for debugging, technical drafting, and working through implemen
 ### Cursor
 **2 Years of Experience**
 
-Used daily for coding, issue investigation, and personal projects. I pay for the top personal tier (~$200/month) and use it constantly, but final customer-facing output stays human-authored.
+Used daily for coding, issue investigation, and personal projects. I pay for the top personal tier and use it constantly, but final customer-facing output stays human-authored.
 
 ### Groq
 **Ongoing · API inference (Python and other automation)**
@@ -182,7 +189,7 @@ I spend a lot of time building containers, so yes: Linux turtles all the way dow
 ### Windows
 **4 Years of Experience**
 
-I can support it when needed, but I avoid it for development workflows when I have a choice. [This xkcd](https://xkcd.com/1118/) is relevant.
+Four years of Windows endpoint support, including a Windows 7 to 10 migration across Schweitzer Engineering Laboratories, and three years running Windows patch and configuration management through Syxsense Cortex. My own development happens on Linux and macOS, but Windows fleets are an environment I have shipped real work against.
 
 ### macOS
 **5 Years of Experience**

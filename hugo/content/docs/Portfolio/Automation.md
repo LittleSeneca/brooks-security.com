@@ -1,6 +1,11 @@
+---
+title: "Automation"
+weight: 5
+---
+
 # Automation Projects
 
-These are the side projects where I work out automation ideas before they ever touch a client. Some are tools I reach for constantly. Others started as a one-off problem I refused to solve by hand twice.
+These are the side projects where I work out automation ideas before they go anywhere near production. Some are tools I reach for constantly. Others started as a one-off problem I refused to solve by hand twice.
 
 ## Jarvis - Executive Summary Agent
 [![GitHub: LittleSeneca/jarvis-executive-summary](https://img.shields.io/badge/GitHub-LittleSeneca%2Fjarvis--executive--summary-181717?logo=github&logoColor=white)](https://github.com/LittleSeneca/jarvis-executive-summary)

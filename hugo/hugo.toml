@@ -1,6 +1,6 @@
 baseURL = 'https://www.brooks-security.com/'
 languageCode = 'en-us'
-title = 'Brooks Security'
+title = 'Graham Brooks'
 theme = 'hugo-book'
 
 [params]
@@ -20,6 +20,13 @@ unsafe = true
     name = "brooks-security"
     URL = "s3://brooks-security.com?region=us-east-1"
     cloudFrontDistributionID = "E1QZQDBCV5WT01"
+    # Video artifacts (e.g. downloads/Presentation-Artifact.mp4) are uploaded to
+    # the bucket out of band because they are too large to keep in git. The
+    # deploy runs with `--maxDeletes -1`, which would otherwise delete every
+    # remote object with no local counterpart on the next push to main.
+    # Per Hugo's deploy docs, remote files failing the include/exclude filters
+    # are not deleted, so this glob is what keeps them alive.
+    exclude = "**.mp4"
 
   # Matchers for deployment
   [[deployment.matchers]]

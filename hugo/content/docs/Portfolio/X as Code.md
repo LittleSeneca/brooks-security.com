@@ -1,3 +1,8 @@
+---
+title: "X as Code"
+weight: 7
+---
+
 # X as Code
 
 This section collects some of my configuration-as-code and infrastructure-as-code projects. These are the labs and templates I use to keep my own skills sharp and to stand up throwaway environments fast.

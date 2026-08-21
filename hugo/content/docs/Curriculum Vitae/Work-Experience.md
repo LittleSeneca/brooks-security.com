@@ -1,17 +1,23 @@
+---
+title: "Work Experience"
+weight: 1
+---
+
 # Work Experience
 
 ## Context:
 
-I am a CISSP and Red Hat Certified Engineer who builds and runs the security programs and cloud infrastructure that keep businesses operating. With nearly a decade of experience across the security lifecycle, my work centers on two things: Governance, Risk, and Compliance, and secure, performant, and cost-efficient cloud infrastructure. On the GRC side, I have led SOC 2 Type 1 and Type 2 programs, written the policies and procedures behind them, and passed rigorous audits with zero findings. On the infrastructure side, I architect and operate AWS environments that are secure by default, fast under real workloads, and economical to run. I have delivered these results for organizations across SaaS, critical infrastructure, government, education, and banking, and my focus is always the same: leave the client secure, compliant, and satisfied.
+I am a solutions architect and sales engineer in the security space, holding a CISSP, an AWS Certified Solutions Architect, and a Red Hat Certified Engineer. Ten years in IT, the last six of them in security.
+
+I spent three years running the technical side of security software sales: proofs of concept, RFI and RFP responses, architecture sessions, and webinar and event delivery. As one of three sales engineers at Syxsense, I was the presales support on deals representing 50% of the company's total revenue in my first year; over the next two that share moved to 40% and then 30% as I hired and trained the sales engineering team. More than 100 new logos came through that work, and I provided primary presales support on deals north of $1 million. I finished there as Lead Solutions Architect. Since March 2024 I have been in-house at AvatarFleet, where I built the security program from nothing, led it through SOC 2 Type 1 and Type 2 with zero adverse findings, and wrote the Terraform and Ansible that enforce the controls.
+
+In a pre-sales conversation that means I can scope the deployment, write the integration myself, and answer the customer's security and compliance people without escalating. I have done this across SaaS, critical infrastructure, government, education, and banking.
+
+I am moving back toward presales deliberately. I want technical work that is attached to organizational growth and revenue rather than one step removed from it, and sales engineering is one of the few seats where that comes without giving up hands-on project work.
+
+**I am currently looking for a Sales Engineering or Solutions Architecture role in platform security, blue-team tooling, or cloud infrastructure.** I am based in Moscow, Idaho, and happy to relocate for the right role. [Get in touch](/docs/contact/), or grab the [one-page resume](/resume/).
 
 ## Experience:
-### Founder & Principal Consultant, Brooks Security LLC
-**April 2024 – Present** · Part-time · Moscow, Idaho, United States · Remote
-
-- **Independent consulting practice:** Run Brooks Security LLC as an independent security and infrastructure consulting practice, serving multiple organizations across regulated industries.
-- **SOC 2 and compliance delivery:** Help clients build and maintain SOC 2 programs that pass the audit with zero findings.
-- **Infrastructure and automation:** Design and operate secure, cost-efficient AWS environments using Terraform and Ansible.
-
 ### Senior Security & Systems Engineer, AvatarFleet
 **Mar 2024 – Present** · Full-time · Moscow, Idaho, United States · Remote
 
@@ -23,14 +29,17 @@ I am a CISSP and Red Hat Certified Engineer who builds and runs the security pro
 ### Lead Solutions Architect, Syxsense Inc.
 **Mar 2023 – Mar 2024** · Full-time · Moscow, Idaho, United States · Remote
 
+- **Team leadership:** Hired, trained, and led the sales engineering team, with three direct reports.
+- **Revenue contribution:** Provided presales support on deals representing 30% of total company revenue, with the balance increasingly carried by the team I built rather than by me.
 - **Hybrid and multi-cloud expertise:** Led the design and implementation of security solutions across hybrid and multi-cloud environments, focusing on automation to streamline operations and enhance security.
 - **Technical leadership and automation:** Oversaw deployment of automated security solutions using Ansible and Python, reducing manual overhead and improving response times.
 - **Strategic development contributions:** Helped align product development with emerging cloud security trends and customer needs.
-- **Industry advocacy:** Served as a technical voice at industry events on security automation in hybrid and multi-cloud settings.
+- **Industry advocacy:** Presented to audiences in the hundreds from the company's booth stage at Black Hat USA, led hands-on workshops with dozens of customers at a time, and taught a week-long seminar as a visiting industry partner at VIT-AP University in Vijayawada, India. Also worked large-format event booths and represented the technical side in critical-path negotiations.
 
 ### Senior Security Solutions Architect, Syxsense Inc.
 **Apr 2022 – Mar 2023** · Full-time · Salt Lake City, Utah, United States
 
+- **Revenue contribution:** Provided presales support on deals representing 40% of total company revenue.
 - **Solutions engineering:** Designed and implemented tailored security automation solutions in critical infrastructure, leveraging Ansible and Python for integration of AWS-hosted EC2 workloads into the platform.
 - **Vulnerability management:** Developed vulnerability management frameworks for Linux servers in regulated on-premises environments, supporting customers with tens of thousands of endpoints under management.
 - **Product support:** Contributed to the platform user guide and technical customer support.
@@ -39,8 +48,9 @@ I am a CISSP and Red Hat Certified Engineer who builds and runs the security pro
 ### Solutions Architect, Syxsense Inc.
 **Apr 2021 – Apr 2022** · Full-time · Salt Lake City, Utah, United States
 
-- **Sales engineering:** Helped bring more than 100 new logos to Syxsense through proofs of concept and RFI/RFP responses.
-- **Solutions architecture:** Co-architected deployments to match client environments.
+- **Revenue contribution:** One of three sales engineers. Provided presales support on deals representing 50% of Syxsense's total company revenue in my first year, including deals north of $1 million.
+- **Sales engineering:** Directly managed more than 100 new logos through proofs of concept and RFI/RFP responses, including primary presales support on deals north of $1 million.
+- **Solutions architecture:** Co-architected deployments to match customer environments.
 - **Marketing initiatives:** Developed and delivered educational webinars for the marketing team.
 
 ### Associate Information Technology Analyst, Schweitzer Engineering Laboratories

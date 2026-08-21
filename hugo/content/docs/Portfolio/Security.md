@@ -1,3 +1,8 @@
+---
+title: "Security"
+weight: 3
+---
+
 # Security Projects
 
 ## Local NVD Database

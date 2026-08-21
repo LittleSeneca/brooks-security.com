@@ -91,40 +91,6 @@ resource "aws_cloudfront_distribution" "main" {
     origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac" # AllViewerExceptHostHeader (AWS-managed)
   }
 
-  # grc-tools API. Proxies /api/grc-tools/* requests to the API Gateway origin.
-  # MUST appear before the /grc-tools/* behavior — CloudFront matches first
-  # pattern in order, and /api/grc-tools/* is more specific.
-  ordered_cache_behavior {
-    path_pattern             = "/api/grc-tools/*"
-    target_origin_id         = "contact-api"
-    viewer_protocol_policy   = "redirect-to-https"
-    allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
-    cached_methods           = ["GET", "HEAD"]
-    compress                 = false
-    cache_policy_id          = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" # CachingDisabled
-    origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac" # AllViewerExceptHostHeader
-  }
-
-  # grc-tools auth gate.
-  # Single Lambda@Edge on viewer-request handles both auth check and
-  # URL rewriting (/ -> /index.html). CloudFront only allows one
-  # viewer-request trigger per behavior; the Lambda does both jobs.
-  ordered_cache_behavior {
-    path_pattern           = "/grc-tools/*"
-    target_origin_id       = "${var.domain}.s3.us-east-1.amazonaws.com"
-    viewer_protocol_policy = "redirect-to-https"
-    allowed_methods        = ["HEAD", "GET"]
-    cached_methods         = ["HEAD", "GET"]
-    compress               = true
-    cache_policy_id        = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" # CachingDisabled
-
-    lambda_function_association {
-      event_type   = "viewer-request"
-      lambda_arn   = aws_lambda_function.auth_gate.qualified_arn
-      include_body = false
-    }
-  }
-
   viewer_certificate {
     acm_certificate_arn      = aws_acm_certificate.cert.arn
     ssl_support_method       = "sni-only"

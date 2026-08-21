@@ -3,7 +3,7 @@
     <a class="top-nav__brand" href="{{ .Site.Home.RelPermalink }}">{{ .Site.Title }}</a>
     <span class="top-nav__dot">·</span>
     {{ if .IsHome }}
-      <span class="top-nav__subtitle">vCISO / Sec / Dev / Ops</span>
+      <span class="top-nav__subtitle">Sales Engineering / Solutions Architecture</span>
     {{ else }}
       <span class="top-nav__subtitle">{{ partial "docs/title" . }}</span>
     {{ end }}
@@ -31,12 +31,12 @@
         </div>
         {{ end }}
       {{ else if and .Content (ne .Params.bookHidden true) }}
-        <a class="top-nav__link" href="{{ .RelPermalink }}">{{ partial "docs/title" . }}</a>
+        <a class="top-nav__link{{ if .Params.navHighlight }} top-nav__link--highlight{{ end }}" href="{{ .RelPermalink }}">{{ partial "docs/title" . }}</a>
       {{ end }}
     {{ end }}
     {{ $menuAfter := .Site.Menus.after }}
     {{ range $menuAfter }}
-      <a class="top-nav__link{{ if eq .Name "SOC 2 Readiness Checklist" }} top-nav__link--highlight{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+      <a class="top-nav__link" href="{{ .URL }}">{{ .Name }}</a>
     {{ end }}
   </div>
 </nav>
