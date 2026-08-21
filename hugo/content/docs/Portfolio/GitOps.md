@@ -1,3 +1,8 @@
+---
+title: "GitOps"
+weight: 4
+---
+
 # GitOps
 ## Brooks-Security.com
 
@@ -108,7 +113,7 @@ I kick the workflow from EventBridge instead of a GitHub Actions `schedule:` cro
 
 ## Contact form
 
-The Services section has a working contact form, and adding it didn't change the cost or the shape of the architecture. One CloudFront behavior routes `/api/contact` to an API Gateway HTTP API, so the browser posts to the same origin it loaded from, with no CORS to wrangle. Nothing is always-on; I pay per request for both API Gateway and Lambda.
+The contact page has a working form, and adding it didn't change the cost or the shape of the architecture. One CloudFront behavior routes `/api/contact` to an API Gateway HTTP API, so the browser posts to the same origin it loaded from, with no CORS to wrangle. Nothing is always-on; I pay per request for both API Gateway and Lambda.
 
 ```mermaid
 flowchart TD
@@ -124,9 +129,9 @@ The Lambda does three things: confirm the request actually came through CloudFro
 
 This is the kind of result I want from picking the right building blocks: a dynamic feature, with bot protection and email delivery, bolted onto a static site for a rounding error. API Gateway's HTTP API is pay-per-request, about $1 per million calls, which for a contact form rounds to zero. A real backend that adds no always-on infrastructure and no meaningful cost.
 
-## Lead-magnet capture, keyless into Google Sheets
+## Signup capture, keyless into Google Sheets
 
-The readiness-checklist landing page captures signups into a live Google Sheet. It reuses the contact form's whole anti-abuse posture, the CloudFront origin secret, reCAPTCHA Enterprise, and a honeypot, on a second route (`/api/subscribe`) on the same API Gateway HTTP API. The interesting part is how it writes to Google, because it does it without a key.
+A second route on the same API Gateway HTTP API (`/api/subscribe`) captures form signups into a Google Sheet, reusing the contact form's whole anti-abuse posture: the CloudFront origin secret, reCAPTCHA Enterprise, and a honeypot. It backed a lead-magnet landing page that is no longer published, but the endpoint is worth writing up for how it authenticates to Google, because it does it without a key.
 
 Google's organization policy here blocks service-account key creation outright, which is the right default. So instead of a static key sitting in SSM, the Lambda uses Workload Identity Federation: its AWS execution role federates into GCP and impersonates a keyless service account, and only that service account is shared on the Sheet.
 

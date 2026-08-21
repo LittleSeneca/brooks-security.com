@@ -2,7 +2,7 @@
   github-heatmap — renders a GitHub-style contribution calendar as a fully
   static inline SVG. No client-side JS, no third-party requests.
 
-  Data source: site.Data.contributions (hugo/data/contributions.json), which is
+  Data source: hugo.Data.contributions (hugo/data/contributions.json), which is
   regenerated at build time from the GitHub GraphQL contributionsCollection API
   (see .github/workflows/hugo-deploy.yml). Shape:
 
@@ -20,7 +20,7 @@
   instead of a broken grid.
 */}}
 
-{{ $data := site.Data.contributions }}
+{{ $data := hugo.Data.contributions }}
 
 {{ if and $data $data.weeks (gt (len $data.weeks) 0) }}
   {{- $cell := 11 -}}

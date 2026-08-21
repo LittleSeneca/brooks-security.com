@@ -1,7 +1,18 @@
 # Spec: Services section + contact form (Lambda + reCAPTCHA v3 + SNS)
 
 **Branch:** `claude/loving-meitner-599625`
-**Status:** Built; switched from classic reCAPTCHA v3 to reCAPTCHA Enterprise during testing
+**Status:** Historical. Built; switched from classic reCAPTCHA v3 to reCAPTCHA Enterprise during testing.
+
+---
+
+## Amendment: Services section removed
+
+The Services section this spec describes (`/docs/services/`, `/docs/services/security-consulting/`,
+`/docs/services/operations-consulting/`, `/docs/services/contact-me/`) no longer exists. The site was
+refocused as a personal portfolio and those pages were deleted. The contact form itself is still live,
+moved to `/docs/contact/`; the backend architecture described below is unchanged and is documented
+in `readme.md`. Treat the content and URL sections of this spec as a record of what was built,
+not as a description of the current site.
 
 ---
 

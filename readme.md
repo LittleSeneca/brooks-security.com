@@ -70,7 +70,7 @@ EventBridge does the kicking, rather than a GitHub Actions `schedule:` cron, on 
 
 ## Contact form
 
-The Services section includes a working contact form with no always-on backend. A CloudFront behavior routes `/api/contact` to an API Gateway HTTP API, so the form posts same-origin (no CORS), and both API Gateway and the Lambda are billed per request:
+The contact page includes a working form with no always-on backend. A CloudFront behavior routes `/api/contact` to an API Gateway HTTP API, so the form posts same-origin (no CORS), and both API Gateway and the Lambda are billed per request:
 
 1. The page loads reCAPTCHA Enterprise and, on submit, POSTs the form as JSON to `/api/contact`.
 2. CloudFront forwards the request to an API Gateway HTTP API (proxy integration) that invokes the `brooks-security-contact` Lambda (`python3.12`), injecting a shared-secret header so the public API cannot be invoked directly.

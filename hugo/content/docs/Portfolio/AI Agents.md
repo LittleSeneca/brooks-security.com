@@ -1,5 +1,6 @@
 ---
 title: "AI Agents"
+weight: 6
 ---
 
 # AI Agents
