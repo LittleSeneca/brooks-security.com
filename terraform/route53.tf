@@ -73,3 +73,14 @@ resource "aws_route53_record" "acm_validation_www" {
   ttl     = 300
   records = ["_2cfd969320fde17b0e672fbda3336bf9.mhbtsbpdnt.acm-validations.aws."]
 }
+
+# devbox → Tailscale IPv4 (100.104.241.57). 100.64.0.0/10 is the CGNAT range
+# Tailscale hands out; the record only resolves to a routable host for
+# tailnet members. Supersedes the wildcard *.brooks-security.com catch-all.
+resource "aws_route53_record" "devbox_a" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "devbox.${var.domain}"
+  type    = "A"
+  ttl     = 300
+  records = ["100.104.241.57"]
+}
