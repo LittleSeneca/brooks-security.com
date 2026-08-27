@@ -116,10 +116,11 @@ resource "aws_iam_user_policy" "caddy_dns" {
     Version = "2012-10-17"
     Statement = [
       {
-        # ListHostedZones is a global list API — cannot be resource-scoped.
+        # ListHostedZonesByName is a global list API — cannot be
+        # resource-scoped. caddy-dns/route53 discovers the zone by name.
         Sid      = "FindZone"
         Effect   = "Allow"
-        Action   = ["route53:ListHostedZones"]
+        Action   = ["route53:ListHostedZonesByName"]
         Resource = "*"
       },
       {
