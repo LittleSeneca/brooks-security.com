@@ -98,3 +98,46 @@ resource "aws_iam_role_policy" "github_deploy" {
     ]
   })
 }
+
+# Caddy DNS-01 ACME identity (caddy-dns/route53 plugin on devbox). Lets
+# Encrypt validates hermes.brooks-security.com via TXT challenge records that
+# Caddy creates and removes in this zone. The access key is generated
+# out-of-band after apply (aws iam create-access-key) and stored only in
+# devbox's Caddy credentials file — never in Terraform state.
+resource "aws_iam_user" "caddy_dns" {
+  name = "caddy-dns"
+}
+
+resource "aws_iam_user_policy" "caddy_dns" {
+  name = "route53-acme"
+  user = aws_iam_user.caddy_dns.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        # ListHostedZones is a global list API — cannot be resource-scoped.
+        Sid      = "FindZone"
+        Effect   = "Allow"
+        Action   = ["route53:ListHostedZones"]
+        Resource = "*"
+      },
+      {
+        Sid      = "ManageChallengeRecords"
+        Effect   = "Allow"
+        Action   = [
+          "route53:GetHostedZone",
+          "route53:ChangeResourceRecordSets",
+          "route53:ListResourceRecordSets",
+        ]
+        Resource = "arn:aws:route53:::hostedzone/${aws_route53_zone.main.zone_id}"
+      },
+      {
+        Sid      = "PollChangeStatus"
+        Effect   = "Allow"
+        Action   = ["route53:GetChange"]
+        Resource = "arn:aws:route53:::change/*"
+      },
+    ]
+  })
+}

@@ -84,3 +84,15 @@ resource "aws_route53_record" "devbox_a" {
   ttl     = 300
   records = ["100.104.241.57"]
 }
+
+# hermes (Hermes dashboard) → Tailscale IPv4 (100.104.241.57), same box as
+# devbox. Served as https://hermes.brooks-security.com by Caddy on devbox,
+# which terminates TLS via Let's Encrypt DNS-01 (Route 53 plugin) — no
+# public reachability required. Supersedes the wildcard catch-all.
+resource "aws_route53_record" "hermes_a" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "hermes.${var.domain}"
+  type    = "A"
+  ttl     = 300
+  records = ["100.104.241.57"]
+}
