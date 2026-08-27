@@ -106,3 +106,15 @@ resource "aws_route53_record" "hermes_a" {
   ttl     = 300
   records = ["100.104.241.57"]
 }
+
+# plex (Plex Media Server) → Tailscale IPv4 (100.104.241.57), same box as
+# devbox. Served as https://plex.brooks-security.com by Caddy on devbox
+# (LE DNS-01 cert, caddy-dns/route53) — tailnet-only, same CGNAT semantics
+# as devbox_a / hermes_a. Supersedes the wildcard catch-all.
+resource "aws_route53_record" "plex_a" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "plex.${var.domain}"
+  type    = "A"
+  ttl     = 300
+  records = ["100.104.241.57"]
+}
