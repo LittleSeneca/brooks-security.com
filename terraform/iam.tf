@@ -123,9 +123,9 @@ resource "aws_iam_user_policy" "caddy_dns" {
         Resource = "*"
       },
       {
-        Sid      = "ManageChallengeRecords"
-        Effect   = "Allow"
-        Action   = [
+        Sid    = "ManageChallengeRecords"
+        Effect = "Allow"
+        Action = [
           "route53:GetHostedZone",
           "route53:ChangeResourceRecordSets",
           "route53:ListResourceRecordSets",
