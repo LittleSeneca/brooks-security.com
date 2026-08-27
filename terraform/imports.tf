@@ -14,6 +14,11 @@ import {
 }
 
 import {
+  to = aws_route53_record.dnd_a
+  id = "Z0929787253OYUX8XP5MU_dnd.brooks-security.com_A"
+}
+
+import {
   to = aws_route53_record.apex_a
   id = "Z0929787253OYUX8XP5MU_brooks-security.com_A"
 }
