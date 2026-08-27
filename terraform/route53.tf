@@ -84,3 +84,13 @@ resource "aws_route53_record" "devbox_a" {
   ttl     = 300
   records = ["100.104.241.57"]
 }
+
+# seedbox (formerly sarah) → Tailscale IPv4 (100.113.78.51). Same CGNAT
+# semantics as devbox_a: routable only for tailnet members.
+resource "aws_route53_record" "seedbox_a" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "seedbox.${var.domain}"
+  type    = "A"
+  ttl     = 300
+  records = ["100.113.78.51"]
+}
