@@ -95,8 +95,9 @@ resource "aws_route53_record" "seedbox_a" {
   records = ["100.113.78.51"]
 }
 
-# hermes (Hermes dashboard) → Tailscale IPv4 (100.104.241.57), same box as
-# devbox. Served as https://hermes.brooks-security.com by Caddy on devbox,
+# hermes (Hermes dashboard) → Tailscale IPv4 (100.113.78.51), same box as
+# seedbox (moved from devbox 2026-08-30). Served as
+# https://hermes.brooks-security.com by Caddy on seedbox,
 # which terminates TLS via Let's Encrypt DNS-01 (Route 53 plugin) — no
 # public reachability required. Supersedes the wildcard catch-all.
 resource "aws_route53_record" "hermes_a" {
@@ -104,7 +105,7 @@ resource "aws_route53_record" "hermes_a" {
   name    = "hermes.${var.domain}"
   type    = "A"
   ttl     = 300
-  records = ["100.104.241.57"]
+  records = ["100.113.78.51"]
 }
 
 # plex (Plex Media Server) → Tailscale IPv4 (100.104.241.57), same box as
