@@ -133,15 +133,14 @@ resource "aws_route53_record" "plex_a" {
   records = ["100.104.241.57"]
 }
 
-# dnd (hardcore-rpg game atlas) → Tailscale IPv4 (100.104.241.57), same box as
-# devbox. Served as https://dnd.brooks-security.com by Caddy on devbox (LE
+# dnd (hardcore-rpg game atlas) → Tailscale IPv4 (100.113.78.51), same box as
+# seedbox. Served as https://dnd.brooks-security.com by Caddy on seedbox (LE
 # DNS-01 cert, caddy-dns/route53) — tailnet-only, same CGNAT semantics as
-# devbox_a / hermes_a. Previously an unmanaged record to a retired IP
-# (85.239.239.38); the import block in imports.tf adopts it into state.
+# seedbox_a / hermes_a. Moved devbox -> seedbox 2026-09-02 (devbox retired).
 resource "aws_route53_record" "dnd_a" {
   zone_id = aws_route53_zone.main.zone_id
   name    = "dnd.${var.domain}"
   type    = "A"
   ttl     = 300
-  records = ["100.104.241.57"]
+  records = ["100.113.78.51"]
 }
